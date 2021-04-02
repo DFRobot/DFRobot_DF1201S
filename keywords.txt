@@ -1,0 +1,56 @@
+#######################################
+# Syntax Coloring Map For DFRobot_PLAY
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DFRobot_PLAY	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+setBaudRate	KEYWORD2
+setPlayMode	KEYWORD2
+setLED	KEYWORD2
+setPrompt	KEYWORD2
+setVol	KEYWORD2
+switchFunction	KEYWORD2
+next	KEYWORD2
+last	KEYWORD2
+start	KEYWORD2
+pause	KEYWORD2
+saveRec	KEYWORD2
+delCurFile	KEYWORD2
+playSpecFile	KEYWORD2
+getVol	KEYWORD2
+getPlayMode	KEYWORD2
+setPlayTime	KEYWORD2
+fastReverse	KEYWORD2
+fastForward	KEYWORD2
+disableAMP	KEYWORD2
+enableAMP	KEYWORD2
+getFileName	KEYWORD2
+getTotalTime	KEYWORD2
+getCurTime	KEYWORD2
+getTotalFile	KEYWORD2
+getCurFileNumber	KEYWORD2
+
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+MUSIC	LITERAL1
+RECORD	LITERAL1
+UFDISK	LITERAL1
+
+SINGLECYCLE	LITERAL1
+ALLCYCLE	LITERAL1
+SINGLE	LITERAL1
+ERROR	LITERAL1
+FOLDER	LITERAL1
+RANDOM	LITERAL1
