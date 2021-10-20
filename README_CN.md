@@ -1,12 +1,17 @@
 # DFRobot_DF1201S
-- [中文版](./README_CN.md)
-
-Here comes the DFPlayer Pro-a mini simple but powerful MP3 Player! This MP3 player module supports four controlling modes: Arduino, AT command, on-board buttons, and ADKEY. You can directly press the on-board button to play or switch music without using a controller. By using a USB cable, you can easily copy your favorite songs into this module to play them any where you want, or use it as a sound card for your PC or Raspberry Pi after connecting them together.
+您是否在寻找一款简单又强大的MP3播放模块？看这里！这款MP3播放模块支持<br>
+arduino、AT指令、板载按键和AD按键四种控制方式。 <br>
+通过板载按键即使在没有微控制器的情况下也能进行音乐播放和切换。模块搭载<br>
+了128MB的存储空间，通过USB线您可以很容易的将您喜欢的音乐拷贝到模块中。<br>
+该模块可作为电脑或Raspberry Pi声卡，用USB数据线将模块和电脑连接，电脑<br>
+播放音乐即可通过该 模块输出。<br>
 
 ![Product Image](./resources/images/DFR0768.png)
 
-## Product Link (https://www.dfrobot.com/product-2232.html)
-    SKU: DFR0768
+
+## 产品链接（https://www.dfrobot.com.cn/goods-3046.html）
+
+    SKU：DFR0768
 	
 ## Table of Contents
 
@@ -18,13 +23,12 @@ Here comes the DFPlayer Pro-a mini simple but powerful MP3 Player! This MP3 play
 * [Credits](#credits)
 
 ## Summary
-1. Playing Music
 
-
+1. 播放音乐
 
 ## Installation
 
-To use this library, first download the library file, paste it into the \Arduino\libraries directory, then open the examples folder and run the demo in the folder
+To use this library, first download the library file, paste it into the \Arduino\libraries directory, then open the examples folder and run the demo in the folder.
 
 ## Methods
 ```C++

@@ -1,33 +1,56 @@
-# DFRobot_DF1201S
-- [中文版](./README_CN.md)
-
-Here comes the DFPlayer Pro-a mini simple but powerful MP3 Player! This MP3 player module supports four controlling modes: Arduino, AT command, on-board buttons, and ADKEY. You can directly press the on-board button to play or switch music without using a controller. By using a USB cable, you can easily copy your favorite songs into this module to play them any where you want, or use it as a sound card for your PC or Raspberry Pi after connecting them together.
-
-![Product Image](./resources/images/DFR0768.png)
-
-## Product Link (https://www.dfrobot.com/product-2232.html)
-    SKU: DFR0768
-	
-## Table of Contents
-
-* [Summary](#summary)
-* [Installation](#installation)
-* [Methods](#methods)
-* [Compatibility](#compatibility)
-* [History](#history)
-* [Credits](#credits)
-
-## Summary
-1. Playing Music
+/*!
+ *@file DFRobot_DF1201S.h
+ *@brief Define the basic structure of class DFRobot_DF1201S, the implementation of basic methods.
+ *@details This module is a conversion board, which can drive DF1201S DFPlayer PRO MP3 through I2C
+ *@copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
+ *@license     The MIT license (MIT)
+ *@author [fengli](li.feng@dfrobot.com)
+ *@version  V1.1
+ *@date  2021-10-15
+ *@url https://github.com/DFRobot/DFRobot_DF1201S
+*/
 
 
+#ifndef DFROBOT_DF1201S_H
+#define DFROBOT_DF1201S_H
 
-## Installation
+#include <Arduino.h>
+#include <string.h>
+//#define ENABLE_DBG
 
-To use this library, first download the library file, paste it into the \Arduino\libraries directory, then open the examples folder and run the demo in the folder
+#ifdef ENABLE_DBG
+#define DBG(...) {Serial.print("[");Serial.print(__FUNCTION__); Serial.print("(): "); Serial.print(__LINE__); Serial.print(" ] "); Serial.println(__VA_ARGS__);}
+#else
+#define DBG(...)
+#endif
+//extern Stream *dbg;
+class DFRobot_DF1201S
+{
+public:
 
-## Methods
-```C++
+  typedef enum{
+    MUSIC = 1,  /**<Music Mode */
+    UFDISK,     /**<Slave mode */
+  }eFunction_t;
+  
+  typedef struct{
+   String str;
+   uint8_t length;
+  }sPacket_t;
+  
+  typedef enum{
+    SINGLECYCLE = 1,  /**<Repeat one song */
+    ALLCYCLE,         /**<Repeat all */
+    SINGLE,           /**<Play one song only */
+    RANDOM,           /**<Random*/
+    FOLDER,           /**<Repeat all songs in folder */
+    ERROR,             
+  }ePlayMode_t;
+
+
+
+  DFRobot_DF1201S();
+  //~DFRobot_DF1201S();
   /**
    * @fn begin
    * @brief init function
@@ -172,7 +195,7 @@ To use this library, first download the library file, paste it into the \Arduino
   /**
    * @fn getPlayMode
    * @brief Get palyback mode 
-   * @return ePlayMode_t ：Play Mode
+   * @return ePlayMode_t  Play Mode
    */
   ePlayMode_t getPlayMode();
   
@@ -258,30 +281,18 @@ To use this library, first download the library file, paste it into the \Arduino
    * @retval false Setting failed
    */
   bool setPlayTime(uint16_t second);
-```
+private:
+  uint8_t getINT(String str);
+  uint8_t unicodeToUtf8(uint16_t unicode ,uint8_t * uft8);
+  sPacket_t pack(String cmd = " ",String para = " " );
+  Stream *_s = NULL;
+  void writeATCommand(String command,uint8_t length);
+  String readAck(uint8_t len = 4);
+  eFunction_t curFunction;
+  String atCmd;
+  
+  uint8_t pauseFlag;
+  
+};
 
-## Compatibility
-
-MCU                | Work Well    | Work Wrong   | Untested    | Remarks
------------------- | :----------: | :----------: | :---------: | -----
-Arduino Uno        |      √       |              |             | 
-Mega2560        |      √       |              |             | 
-Leonardo        |      √       |              |             | 
-ESP32        |      √       |              |             | 
-ESP8266        |      √       |              |             | 
-M0        |      √       |              |             | 
-
-
-## History
-
-- 2021/06/4  - Version 1.0.0 released.
-- 2021/10/15 - Version 1.0.1 released.
-
-## Credits
-
-Written by fengli(li.feng@dfrobot.com), 2020.7.31 (Welcome to our [website](https://www.dfrobot.com/))
-
-
-
-
-
+#endif

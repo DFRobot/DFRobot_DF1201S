@@ -1,12 +1,12 @@
 #######################################
-# Syntax Coloring Map For DFRobot_PLAY
+# Syntax Coloring Map For DFRobot_DF1201S
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-DFRobot_PLAY	KEYWORD1
+DFRobot_DF1201S	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

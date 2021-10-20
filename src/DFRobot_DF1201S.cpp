@@ -1,23 +1,22 @@
 /*!
- *@file DFRobot_PLAY.cpp
- *@brief Define the basic structure of class DFRobot_PLAY, the implementation of the basic methods
+ *@file DFRobot_DF1201S.cpp
+ *@brief Define the basic structure of class DFRobot_DF1201S, the implementation of the basic methods
  *@copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
- *@licence     The MIT License (MIT)
+ *@license     The MIT license (MIT)
  *@author [fengli](li.feng@dfrobot.com)
- *@version  V1.0
- *@date  2020-12-02
- *@get from https://www.dfrobot.com
- *@https://github.com/DFRobot/DFRobot_PLAY
+ *@version  V1.1
+ *@date  2021-10-15
+ *@url https://github.com/DFRobot/DFRobot_DF1201S
 */
 
-#include <DFRobot_PLAY.h>
+#include <DFRobot_DF1201S.h>
 
 
-DFRobot_PLAY::DFRobot_PLAY(){
+DFRobot_DF1201S::DFRobot_DF1201S(){
 
 }
 
-bool DFRobot_PLAY::begin(Stream &s){
+bool DFRobot_DF1201S::begin(Stream &s){
    sPacket_t cmd;
    _s = &s;
    cmd = pack();
@@ -30,7 +29,7 @@ bool DFRobot_PLAY::begin(Stream &s){
    }
 }
 
-uint8_t DFRobot_PLAY::getVol(){
+uint8_t DFRobot_DF1201S::getVol(){
    String vol = "";
    sPacket_t cmd;
    cmd = pack("VOL","?");
@@ -42,7 +41,7 @@ uint8_t DFRobot_PLAY::getVol(){
    return (uint8_t)atoi(vol.c_str());
 }
 
-bool DFRobot_PLAY::setVol(uint8_t vol){
+bool DFRobot_DF1201S::setVol(uint8_t vol){
    sPacket_t cmd;
    cmd = pack("VOL",String(vol));
    writeATCommand(cmd.str,cmd.length);
@@ -53,7 +52,7 @@ bool DFRobot_PLAY::setVol(uint8_t vol){
    }
 }
 
-DFRobot_PLAY::ePlayMode_t DFRobot_PLAY::getPlayMode(){
+DFRobot_DF1201S::ePlayMode_t DFRobot_DF1201S::getPlayMode(){
 
    String playMode = "";
    sPacket_t cmd;
@@ -68,7 +67,7 @@ DFRobot_PLAY::ePlayMode_t DFRobot_PLAY::getPlayMode(){
      return ERROR;
 
 }
-bool DFRobot_PLAY::setBaudRate(uint32_t baud){
+bool DFRobot_DF1201S::setBaudRate(uint32_t baud){
    sPacket_t cmd;
    cmd = pack("BAUDRATE",String(baud));
    writeATCommand(cmd.str,cmd.length);
@@ -78,7 +77,7 @@ bool DFRobot_PLAY::setBaudRate(uint32_t baud){
     return false;
    }
 }
-bool DFRobot_PLAY::switchFunction(eFunction_t function){
+bool DFRobot_DF1201S::switchFunction(eFunction_t function){
    sPacket_t cmd;
    cmd = pack("FUNCTION",String(function));
    curFunction = function;
@@ -91,7 +90,7 @@ bool DFRobot_PLAY::switchFunction(eFunction_t function){
     return false;
    }
 }
-bool DFRobot_PLAY::setPlayMode(ePlayMode_t mode){
+bool DFRobot_DF1201S::setPlayMode(ePlayMode_t mode){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("PLAYMODE",String(mode));
@@ -102,7 +101,7 @@ bool DFRobot_PLAY::setPlayMode(ePlayMode_t mode){
     return false;
    }
 }
-bool DFRobot_PLAY::setLED(bool on){
+bool DFRobot_DF1201S::setLED(bool on){
 
    sPacket_t cmd;
    String mode;
@@ -119,7 +118,7 @@ bool DFRobot_PLAY::setLED(bool on){
    }
 
 }
-bool DFRobot_PLAY::setPrompt(bool on){
+bool DFRobot_DF1201S::setPrompt(bool on){
    sPacket_t cmd;
    String mode;
    if(on == true )
@@ -135,7 +134,7 @@ bool DFRobot_PLAY::setPrompt(bool on){
    }
 }
 
-bool DFRobot_PLAY::next(){
+bool DFRobot_DF1201S::next(){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("PLAY","NEXT");
@@ -149,7 +148,7 @@ bool DFRobot_PLAY::next(){
 }
 
 
-bool DFRobot_PLAY::last(){
+bool DFRobot_DF1201S::last(){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("PLAY","LAST");
@@ -161,7 +160,7 @@ bool DFRobot_PLAY::last(){
     return false;
    }
 }
-bool DFRobot_PLAY::start(){
+bool DFRobot_DF1201S::start(){
    sPacket_t cmd;
    cmd = pack("PLAY","PP");
 
@@ -177,7 +176,7 @@ bool DFRobot_PLAY::start(){
    }
 }
 
-bool DFRobot_PLAY::pause(){
+bool DFRobot_DF1201S::pause(){
    sPacket_t cmd;
    cmd = pack("PLAY","PP");
 
@@ -192,7 +191,7 @@ bool DFRobot_PLAY::pause(){
 }
 
 
-bool DFRobot_PLAY::delCurFile(){
+bool DFRobot_DF1201S::delCurFile(){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    
@@ -205,7 +204,7 @@ bool DFRobot_PLAY::delCurFile(){
    }
 
 }
-bool DFRobot_PLAY::playSpecFile(String str){
+bool DFRobot_DF1201S::playSpecFile(String str){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("PLAYFILE",str);
@@ -216,7 +215,7 @@ bool DFRobot_PLAY::playSpecFile(String str){
     return false;
    }
 }
-bool DFRobot_PLAY::playFileNum(int16_t num){
+bool DFRobot_DF1201S::playFileNum(int16_t num){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("PLAYNUM",String(num));
@@ -227,7 +226,7 @@ bool DFRobot_PLAY::playFileNum(int16_t num){
     return false;
    }
 }
-bool DFRobot_PLAY::fastForward(uint16_t second){
+bool DFRobot_DF1201S::fastForward(uint16_t second){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
 
@@ -243,7 +242,7 @@ bool DFRobot_PLAY::fastForward(uint16_t second){
 
 
 }
-bool DFRobot_PLAY::fastReverse(uint16_t second){
+bool DFRobot_DF1201S::fastReverse(uint16_t second){
 
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
@@ -257,7 +256,7 @@ bool DFRobot_PLAY::fastReverse(uint16_t second){
    }
 
 }
-bool DFRobot_PLAY::setPlayTime(uint16_t second){
+bool DFRobot_DF1201S::setPlayTime(uint16_t second){
 
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
@@ -270,7 +269,7 @@ bool DFRobot_PLAY::setPlayTime(uint16_t second){
    }
 }
 
-uint8_t DFRobot_PLAY::getINT(String str){
+uint8_t DFRobot_DF1201S::getINT(String str){
    uint8_t numLen = 0;
    uint16_t num =0 ;
    for(uint8_t i = 0; i < str.length();i++){
@@ -289,7 +288,7 @@ uint8_t DFRobot_PLAY::getINT(String str){
     }
     return num;
 }
-uint16_t DFRobot_PLAY::getCurTime(){
+uint16_t DFRobot_DF1201S::getCurTime(){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("QUERY","3");
@@ -298,7 +297,7 @@ uint16_t DFRobot_PLAY::getCurTime(){
    return getINT(str);
    
 }
-bool DFRobot_PLAY::enableAMP(){
+bool DFRobot_DF1201S::enableAMP(){
 
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
@@ -311,7 +310,7 @@ bool DFRobot_PLAY::enableAMP(){
    }
 }
 
-bool DFRobot_PLAY::disableAMP(){
+bool DFRobot_DF1201S::disableAMP(){
 
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
@@ -323,7 +322,7 @@ bool DFRobot_PLAY::disableAMP(){
     return false;
    }
 }
-uint16_t DFRobot_PLAY::getTotalTime(){
+uint16_t DFRobot_DF1201S::getTotalTime(){
 
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
@@ -334,7 +333,7 @@ uint16_t DFRobot_PLAY::getTotalTime(){
    //Serial.println(str);
    return getINT(str);
 }
-uint16_t DFRobot_PLAY::getCurFileNumber(){
+uint16_t DFRobot_DF1201S::getCurFileNumber(){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("QUERY","1");
@@ -343,7 +342,7 @@ uint16_t DFRobot_PLAY::getCurFileNumber(){
    //Serial.println(str);
    return getINT(str);
 }
-uint16_t DFRobot_PLAY::getTotalFile(){
+uint16_t DFRobot_DF1201S::getTotalFile(){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("QUERY","2");
@@ -352,7 +351,7 @@ uint16_t DFRobot_PLAY::getTotalFile(){
    //Serial.println(str);
    return getINT(str);
 }
-String DFRobot_PLAY::getFileName(){
+String DFRobot_DF1201S::getFileName(){
    String name="";
    uint8_t dataUtf8[6];
    if(curFunction != MUSIC) return "error";
@@ -379,7 +378,7 @@ String DFRobot_PLAY::getFileName(){
    }
    return name;
 }
-uint8_t DFRobot_PLAY::unicodeToUtf8(uint16_t unicode ,uint8_t * uft8){
+uint8_t DFRobot_DF1201S::unicodeToUtf8(uint16_t unicode ,uint8_t * uft8){
     //Serial.println(unicode,HEX);
     if ( unicode <= 0x0000007F )
     {
@@ -437,7 +436,7 @@ uint8_t DFRobot_PLAY::unicodeToUtf8(uint16_t unicode ,uint8_t * uft8){
 }
 
 
-DFRobot_PLAY::sPacket_t DFRobot_PLAY::pack(String cmd ,String para){
+DFRobot_DF1201S::sPacket_t DFRobot_DF1201S::pack(String cmd ,String para){
   sPacket_t pack;
   atCmd = "";
   atCmd += "AT";
@@ -455,7 +454,7 @@ DFRobot_PLAY::sPacket_t DFRobot_PLAY::pack(String cmd ,String para){
   pack.length = atCmd.length();
   return pack;
 }
-void DFRobot_PLAY::writeATCommand(String command,uint8_t length){
+void DFRobot_DF1201S::writeATCommand(String command,uint8_t length){
     uint8_t data[40];
     while(_s->available()) {
          _s->read();
@@ -467,7 +466,7 @@ void DFRobot_PLAY::writeATCommand(String command,uint8_t length){
 
 
 
-String DFRobot_PLAY::readAck(uint8_t len){
+String DFRobot_DF1201S::readAck(uint8_t len){
 
   String str="";
   size_t offset = 0,left = len;
