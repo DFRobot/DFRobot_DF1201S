@@ -269,7 +269,7 @@ bool DFRobot_DF1201S::setPlayTime(uint16_t second){
    }
 }
 
-uint8_t DFRobot_DF1201S::getINT(String str){
+uint16_t DFRobot_DF1201S::getINT(String str){
    uint8_t numLen = 0;
    uint16_t num =0 ;
    for(uint8_t i = 0; i < str.length();i++){
