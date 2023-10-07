@@ -208,6 +208,7 @@ bool DFRobot_DF1201S::playSpecFile(String str){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("PLAYFILE",str);
+   pauseFlag = 1;
    writeATCommand(cmd.str,cmd.length);
    pauseFlag = 1;
    if(readAck() == "OK\r\n"){
@@ -220,6 +221,7 @@ bool DFRobot_DF1201S::playFileNum(int16_t num){
    if(curFunction != MUSIC) return false;
    sPacket_t cmd;
    cmd = pack("PLAYNUM",String(num));
+   pauseFlag = 1;
    writeATCommand(cmd.str,cmd.length);
    pauseFlag = 1;
    if(readAck() == "OK\r\n"){
@@ -503,7 +505,3 @@ String DFRobot_DF1201S::readAck(uint8_t len){
   }
   return str;
 }
-
-
-
-
