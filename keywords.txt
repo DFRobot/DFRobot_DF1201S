@@ -13,6 +13,7 @@ DFRobot_DF1201S	KEYWORD1
 #######################################
 
 begin	KEYWORD2
+isPlaying	KEYWORD2
 setBaudRate	KEYWORD2
 setPlayMode	KEYWORD2
 setLED	KEYWORD2

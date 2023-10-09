@@ -28,7 +28,7 @@ arduino、AT指令、板载按键和AD按键四种控制方式。 <br>
 
 ## Installation
 
-To use this library, first download the library file, paste it into the \Arduino\libraries directory, then open the examples folder and run the demo in the folder.
+要使用此库，首先下载库文件，将其粘贴到\Arduino\libraries目录中，然后打开examples文件夹并运行该文件夹中的demo。
 
 ## Methods
 ```C++
@@ -41,6 +41,15 @@ To use this library, first download the library file, paste it into the \Arduino
    * @retval false Setting failed
    */
   bool begin(Stream &s);
+  
+  /**
+   * @fn isPlaying
+   * @brief Detects and refreshes the play status
+   * @return Boolean type, Indicates the play result
+   * @retval true be playing
+   * @retval false has stopped
+   */
+  bool isPlaying();
   
   /**
    * @fn setBaudRate
@@ -280,10 +289,11 @@ M0        |      √       |              |             |
 
 - 2021/06/4  - Version 1.0.0 released.
 - 2021/10/15 - Version 1.0.1 released.
+- 2023/10/09 - Version 1.0.2 released.
 
 ## Credits
 
-Written by fengli(li.feng@dfrobot.com), 2020.7.31 (Welcome to our [website](https://www.dfrobot.com/))
+Written by fengli(li.feng@dfrobot.com), 2021. (Welcome to our [website](https://www.dfrobot.com/))
 
 
 

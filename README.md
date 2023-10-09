@@ -39,6 +39,15 @@ To use this library, first download the library file, paste it into the \Arduino
   bool begin(Stream &s);
   
   /**
+   * @fn isPlaying
+   * @brief Detects and refreshes the play status
+   * @return Boolean type, Indicates the play result
+   * @retval true be playing
+   * @retval false has stopped
+   */
+  bool isPlaying();
+  
+  /**
    * @fn setBaudRate
    * @brief Set baud rate(Need to power off and restart, power-down save)
    * @param baud 9600,19200,38400,57600,115200
@@ -276,10 +285,11 @@ M0        |      √       |              |             |
 
 - 2021/06/4  - Version 1.0.0 released.
 - 2021/10/15 - Version 1.0.1 released.
+- 2022/10/09 - Version 1.0.2 released.
 
 ## Credits
 
-Written by fengli(li.feng@dfrobot.com), 2020.7.31 (Welcome to our [website](https://www.dfrobot.com/))
+Written by fengli(li.feng@dfrobot.com), 2021. (Welcome to our [website](https://www.dfrobot.com/))
 
 
 

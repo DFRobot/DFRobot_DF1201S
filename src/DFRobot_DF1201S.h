@@ -5,7 +5,7 @@
  *@copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
  *@license     The MIT license (MIT)
  *@author [fengli](li.feng@dfrobot.com)
- *@version  V1.1
+ *@version  V1.0
  *@date  2021-10-15
  *@url https://github.com/DFRobot/DFRobot_DF1201S
 */
@@ -16,8 +16,8 @@
 
 #include <Arduino.h>
 #include <string.h>
-//#define ENABLE_DBG
 
+//#define ENABLE_DBG
 #ifdef ENABLE_DBG
 #define DBG(...) {Serial.print("[");Serial.print(__FUNCTION__); Serial.print("(): "); Serial.print(__LINE__); Serial.print(" ] "); Serial.println(__VA_ARGS__);}
 #else
@@ -59,7 +59,16 @@ public:
    * @retval true The setting succeeded
    * @retval false Setting failed
    */
-  bool begin(Stream &s);
+  bool begin(Stream& s);
+  
+  /**
+   * @fn isPlaying
+   * @brief Detects and refreshes the play status
+   * @return Boolean type, Indicates the play result
+   * @retval true be playing
+   * @retval false has stopped
+   */
+  bool isPlaying();
   
   /**
    * @fn setBaudRate
@@ -232,7 +241,7 @@ public:
    * @brief Get the name of the playing file 
    * @return A string representing the filename
    */
-  String   getFileName();
+  String getFileName();
   
   /**
    * @fn enableAMP
@@ -282,7 +291,7 @@ public:
    */
   bool setPlayTime(uint16_t second);
 private:
-  uint8_t getINT(String str);
+  uint16_t getINT(String str);
   uint8_t unicodeToUtf8(uint16_t unicode ,uint8_t * uft8);
   sPacket_t pack(String cmd = " ",String para = " " );
   Stream *_s = NULL;
