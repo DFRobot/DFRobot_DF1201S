@@ -36,9 +36,9 @@ uint8_t DFRobot_DF1201S::getVol()
    cmd = pack("VOL", "?");
    writeATCommand(cmd.str, cmd.length);
    String str = readAck(12);
-   vol += str[7];
+   vol += String(str[7]);
    if (str[8] != 0X5D)
-      vol += str[8];
+      vol += String(str[8]);
    return (uint8_t)atoi(vol.c_str());
 }
 
@@ -62,7 +62,7 @@ DFRobot_DF1201S::ePlayMode_t DFRobot_DF1201S::getPlayMode()
    cmd = pack("PLAYMODE", "?");
    writeATCommand(cmd.str, cmd.length);
    String str = readAck(13);
-   playMode = str[10];
+   playMode = String(str[10]);
    //Serial.println(str);
    if (str[11] == '\r' && str[12] == '\n')
       return (ePlayMode_t)atoi(playMode.c_str());
