@@ -290,6 +290,7 @@ M0        |      √       |              |             |
 - 2021/06/4  - Version 1.0.0 released.
 - 2021/10/15 - Version 1.0.1 released.
 - 2023/10/09 - Version 1.0.2 released.
+- 2026/10/22 - Version 1.0.3 released. Explicitly convert characters to String in getVol() and getPlayMode() (fixes ambiguous operator= build error on UNO R4, Nano Every and RP2040).
 
 ## Credits
 
